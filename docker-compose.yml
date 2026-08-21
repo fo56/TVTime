@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: tvtime_db
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-tvtime}
+    ports:
+      - "5432:5432"
+    volumes:
+      - tvtime_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  tvtime_postgres_data:
